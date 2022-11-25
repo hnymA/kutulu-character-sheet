@@ -156,7 +156,7 @@ function _setValues(data) {
     }
   }
   document.getElementById(`skill-value`).innerText = `${skillValue}/13`;
-  for (i = 0; i < skillLength; i++) {
+  for (i = 0; i < specialityLength; i++) {
     const name = document.getElementById(`speciality-${i}-label`).textContent;
     const found = data.data.params.find((element) => element.label === name);
     if (found !== undefined) {
