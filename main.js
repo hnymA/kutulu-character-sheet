@@ -26,7 +26,6 @@ function onClickSkill(id) {
 
 function onClickInjury(id) {
   const found = id.match(/injury-(.*)/);
-  const index = parseInt(found[1]);
   const value = document.getElementById(`${id}`).checked;
   if (value) {
     injuryValue++;
