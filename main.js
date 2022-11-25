@@ -160,9 +160,17 @@ function _setValues(data) {
 
 function _validateData() {
   const playerName = document.getElementById(`player-name`).value;
+  const characterName = document.getElementById(`character-name`).value;
+  const title = document.getElementById(`title`).value;
   let alertMessage = "";
   if (playerName === "") {
     alertMessage += "プレイヤー名を入力してください。\n";
+  }
+  if (characterName === "") {
+    alertMessage += "キャラクター名を入力してください。\n";
+  }
+  if (title === "") {
+    alertMessage += "称号 / 肩書を入力してください。\n";
   }
   if (skillValue > 13) {
     alertMessage += "能力値が上限を超えています。\n";
