@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kutulu character sheet</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Kutulu</h1>
+        <p class="subtitle">character sheet</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="block">
+          <div class="box">
+            <h4 class="title is-4">個人情報</h4>
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <label class="label">プレイヤー名</label>
+              </div>
+              <div class="column">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="プレイヤー名"
+                  id="player-name"
+                />
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <label class="label">キャラクター名</label>
+              </div>
+              <div class="column">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="キャラクター名"
+                  id="character-name"
+                />
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <label class="label">称号 / 肩書</label>
+              </div>
+              <div class="column">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="称号 / 肩書"
+                  id="title"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="columns">
+            <div class="column">
+              <div class="box">
+                <div class="columns">
+                  <div class="column"><h4 class="title is-4">能力値</h4></div>
+                  <div class="column">
+                    <h5 class="title is-5" id="skill-value"></h5>
+                  </div>
+                </div>
+                <h6 class="subtitle is-6">アクティブ能力値</h6>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-0-label">敏捷</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-0-0"
+                      onClick="onClickSkill(this.id)"
+                      name="skill-0"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-0-1"
+                      name="skill-0"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-0-2"
+                      name="skill-0"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-0-3"
+                      name="skill-0"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-0-4"
+                      name="skill-0"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-0-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-1-label">筋力</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-1-0"
+                      name="skill-1"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-1-1"
+                      name="skill-1"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-1-2"
+                      name="skill-1"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-1-3"
+                      name="skill-1"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-1-4"
+                      name="skill-1"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-1-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-2-label">隠密</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-2-0"
+                      name="skill-2"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-2-1"
+                      name="skill-2"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-2-2"
+                      name="skill-2"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-2-3"
+                      name="skill-2"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-2-4"
+                      name="skill-2"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-2-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-3-label">射撃</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-3-0"
+                      name="skill-3"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-3-1"
+                      name="skill-3"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-3-2"
+                      name="skill-3"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-3-3"
+                      name="skill-3"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-3-4"
+                      name="skill-3"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-3-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-4-label">白兵</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-4-0"
+                      name="skill-4"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-4-1"
+                      name="skill-4"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-4-2"
+                      name="skill-4"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-4-3"
+                      name="skill-4"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-4-4"
+                      name="skill-4"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-4-value"></div>
+                </div>
+                <h6 class="subtitle is-6">パッシブ能力値</h6>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-5-label">名声</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-5-0"
+                      name="skill-5"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-5-1"
+                      name="skill-5"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-5-2"
+                      name="skill-5"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-5-3"
+                      name="skill-5"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-5-4"
+                      name="skill-5"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-5-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-6-label">弁舌</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-6-0"
+                      name="skill-6"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-6-1"
+                      name="skill-6"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-6-2"
+                      name="skill-6"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-6-3"
+                      name="skill-6"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-6-4"
+                      name="skill-6"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-6-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-7-label">家格</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-7-0"
+                      name="skill-7"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-7-1"
+                      name="skill-7"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-7-2"
+                      name="skill-7"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-7-3"
+                      name="skill-7"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-7-4"
+                      name="skill-7"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-7-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="skill-8-label">信用</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="skill-8-0"
+                      name="skill-8"
+                      onClick="onClickSkill(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="skill-8-1"
+                      name="skill-8"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-8-2"
+                      name="skill-8"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-8-3"
+                      name="skill-8"
+                      onClick="onClickSkill(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="skill-8-4"
+                      name="skill-8"
+                      onClick="onClickSkill(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="skill-8-value"></div>
+                </div>
+              </div>
+              <div class="box">
+                <h4 class="title is-4">負傷</h4>
+                <div class="columns">
+                  <div class="column">
+                    <input
+                      type="checkbox"
+                      id="injury-0"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                    <input
+                      type="checkbox"
+                      id="injury-1"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                    <input
+                      type="checkbox"
+                      id="injury-2"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="injury-value"></div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box">
+                <div class="columns">
+                  <div class="column"><h4 class="title is-4">専門分野</h4></div>
+                  <div class="column">
+                    <h5 class="title is-5" id="speciality-value"></h5>
+                  </div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-0-label"
+                      >人類学&民俗学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-0-0"
+                      name="speciality-0"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-0-1"
+                      name="speciality-0"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-0-2"
+                      name="speciality-0"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-0-3"
+                      name="speciality-0"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-0-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-1-label"
+                      >考古学&歴史学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-1-0"
+                      name="speciality-1"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-1-1"
+                      name="speciality-1"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-1-2"
+                      name="speciality-1"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-1-3"
+                      name="speciality-1"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-1-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-2-label"
+                      >図書館&古文書学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-2-0"
+                      name="speciality-2"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-2-1"
+                      name="speciality-2"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-2-2"
+                      name="speciality-2"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-2-3"
+                      name="speciality-2"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-2-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-3-label"
+                      >経済学&法学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-3-0"
+                      name="speciality-3"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-3-1"
+                      name="speciality-3"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-3-2"
+                      name="speciality-3"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-3-3"
+                      name="speciality-3"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-3-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-4-label"
+                      >芸術&工芸</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-4-0"
+                      name="speciality-4"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-4-1"
+                      name="speciality-4"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-4-2"
+                      name="speciality-4"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-4-3"
+                      name="speciality-4"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-4-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-5-label">犯罪学</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-5-0"
+                      name="speciality-5"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-5-1"
+                      name="speciality-5"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-5-2"
+                      name="speciality-5"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-5-3"
+                      name="speciality-5"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-5-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-6-label">医学</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-6-0"
+                      name="speciality-6"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-6-1"
+                      name="speciality-6"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-6-2"
+                      name="speciality-6"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-6-3"
+                      name="speciality-6"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-6-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-7-label"
+                      >機械工学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-7-0"
+                      name="speciality-7"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-7-1"
+                      name="speciality-7"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-7-2"
+                      name="speciality-7"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-7-3"
+                      name="speciality-7"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-7-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-8-label"
+                      >自然科学</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-8-0"
+                      name="speciality-8"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-8-1"
+                      name="speciality-8"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-8-2"
+                      name="speciality-8"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-8-3"
+                      name="speciality-8"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-8-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-9-label"
+                      >オカルト</label
+                    >
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-9-0"
+                      name="speciality-9"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-9-1"
+                      name="speciality-9"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-9-2"
+                      name="speciality-9"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-9-3"
+                      name="speciality-9"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-9-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-10-label">心理学</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-10-0"
+                      name="speciality-10"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-10-1"
+                      name="speciality-10"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-10-2"
+                      name="speciality-10"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-10-3"
+                      name="speciality-10"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-10-value"></div>
+                </div>
+                <div class="columns">
+                  <div class="column is-one-quarter">
+                    <label class="label" id="speciality-11-label">言語学</label>
+                  </div>
+                  <div class="column">
+                    <input
+                      type="radio"
+                      id="speciality-11-0"
+                      name="speciality-11"
+                      onClick="onClickSpeciality(this.id)"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-11-1"
+                      name="speciality-11"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-11-2"
+                      name="speciality-11"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                    <input
+                      type="radio"
+                      id="speciality-11-3"
+                      name="speciality-11"
+                      onClick="onClickSpeciality(this.id)"
+                    />
+                  </div>
+                  <div class="column" id="speciality-11-value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <h4 class="title is-4">備考</h4>
+          <textarea
+            class="textarea"
+            placeholder="備考"
+            rows="3"
+            id="remarks"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="buttons">
+          <button class="button is-primary" onClick="onClickOutput()">
+            出力
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <footer class="footer">
+          <div class="content has-text-centered">
+            <p>Footer</p>
+          </div>
+        </footer>
+      </div>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>
