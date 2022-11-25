@@ -63,30 +63,13 @@ function onClickSpeciality(id) {
   }
 }
 
-function onClickOutput() {
+function _getValues() {
   const playerName = document.getElementById(`player-name`).value;
   const characterName = document.getElementById(`character-name`).value;
   const title = document.getElementById(`title`).value;
   const remarks = document.getElementById(`remarks`).value;
 
-  {
-    let alertMessage = "";
-    if (playerName === "") {
-      alertMessage += "プレイヤー名を入力してください。\n";
-    }
-    if (skillValue > 13) {
-      alertMessage += "能力値が上限を超えています。\n";
-    }
-    if (specialityValue > 10) {
-      alertMessage += "専門分野が上限を超えています。\n";
-    }
-    if (alertMessage !== "") {
-      alert(alertMessage);
-      return;
-    }
-  }
-
-  const outputData = {
+  const data = {
     kind: "character",
     data: {
       name: `${playerName}`,
@@ -102,36 +85,136 @@ function onClickOutput() {
     const value = document.getElementById(`skill-${i}-value`).innerText;
     const checked = parseInt(value) > 0;
     if (checked) {
-      outputData.data.params.push({
+      data.data.params.push({
         label: `${name}`,
         value: `${value}`,
       });
-      outputData.data.commands += `{${name}}B6>=4 【${name}】\n`;
+      data.data.commands += `{${name}}B6>=4 【${name}】\n`;
     }
   }
   for (i = 0; i < specialityLength; i++) {
-    console.log(document.getElementById(`speciality-${i}-label`));
     const name = document.getElementById(`speciality-${i}-label`).textContent;
     const value = document.getElementById(`speciality-${i}-value`).innerText;
     const checked = parseInt(value) > 0;
     if (checked) {
-      outputData.data.params.push({
+      data.data.params.push({
         label: `${name}`,
         value: `${value}`,
       });
-      outputData.data.commands += `{${name}}B6>=4 【${name}】\n`;
+      data.data.commands += `{${name}}B6>=4 【${name}】\n`;
     }
   }
-  outputData.data.commands = outputData.data.commands.trim();
-  outputData.data.status.push({
+  data.data.commands = data.data.commands.trim();
+  data.data.status.push({
     label: "負傷",
     value: `${injuryValue}`,
     max: 3,
   });
-  outputData.data.memo =
+  data.data.memo =
     `プレイヤー名：${playerName}\nキャラクター名：${characterName}\n称号 / 肩書：${title}\n${remarks}`.trim();
-  console.log(JSON.stringify(outputData));
-  navigator.clipboard.writeText(JSON.stringify(outputData));
+  return data;
+}
+
+function _setValues(data) {
+  skillValue = 0;
+  specialityValue = 0;
+  injuryValue = 0;
+
+  const memoArray = data.data.memo.split("\n");
+  document.getElementById(`player-name`).value =
+    memoArray[0].match(/プレイヤー名：(.*)/)[1];
+  document.getElementById(`character-name`).value =
+    memoArray[1].match(/キャラクター名：(.*)/)[1];
+  document.getElementById(`title`).value =
+    memoArray[2].match(/称号 \/ 肩書：(.*)/)[1];
+  document.getElementById(`remarks`).value =
+    memoArray[3] === undefined ? "" : memoArray[3];
+
+  for (i = 0; i < skillLength; i++) {
+    const name = document.getElementById(`skill-${i}-label`).textContent;
+    const found = data.data.params.find((element) => element.label === name);
+    if (found !== undefined) {
+      document.getElementById(`skill-${i}-value`).innerText = found.value;
+      document.getElementById(`skill-${i}-${found.value}`).checked = true;
+      skillValue += parseInt(found.value);
+    }
+  }
+  document.getElementById(`skill-value`).innerText = `${skillValue}/13`;
+  for (i = 0; i < skillLength; i++) {
+    const name = document.getElementById(`speciality-${i}-label`).textContent;
+    const found = data.data.params.find((element) => element.label === name);
+    if (found !== undefined) {
+      document.getElementById(`speciality-${i}-value`).innerText = found.value;
+      document.getElementById(`speciality-${i}-${found.value}`).checked = true;
+      specialityValue += parseInt(found.value);
+    }
+  }
+  document.getElementById(
+    `speciality-value`
+  ).innerText = `${specialityValue}/10`;
+  injuryValue = parseInt(data.data.status[0].value);
+  document.getElementById(`injury-value`).innerText = `${injuryValue}/3`;
+  for (i = 0; i < injuryValue; i++) {
+    document.getElementById(`injury-${i}`).checked = true;
+  }
+}
+
+function _validateData() {
+  const playerName = document.getElementById(`player-name`).value;
+  let alertMessage = "";
+  if (playerName === "") {
+    alertMessage += "プレイヤー名を入力してください。\n";
+  }
+  if (skillValue > 13) {
+    alertMessage += "能力値が上限を超えています。\n";
+  }
+  if (specialityValue > 10) {
+    alertMessage += "専門分野が上限を超えています。\n";
+  }
+  if (alertMessage !== "") {
+    alert(alertMessage);
+    return false;
+  }
+  return true;
+}
+
+function onClickCopy() {
+  if (!_validateData()) {
+    return;
+  }
+  const value = JSON.stringify(_getValues());
+  navigator.clipboard.writeText(value);
+  alert("クリップボードにコピーしました。");
+}
+
+function onClickDownload() {
+  if (!_validateData()) {
+    return;
+  }
+  const value = JSON.stringify(_getValues());
+  const blob = new Blob([value], {
+    type: "text/plain",
+  });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "character.json";
+  link.click();
+}
+
+function onChangeUpload() {
+  const fileInput = document.getElementById("file-input");
+  const fileName = document.getElementById("file-name");
+  if (fileInput.files.length === 0) {
+    return;
+  }
+  const fileReader = new FileReader();
+  fileName.textContent = fileInput.files[0].name;
+  fileReader.readAsText(fileInput.files[0]);
+  fileReader.onload = function () {
+    const data = JSON.parse(fileReader.result);
+    _setValues(data);
+    alert("ファイルを読み込みました。");
+  };
 }
 
 window.onload = function () {
