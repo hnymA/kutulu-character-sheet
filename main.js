@@ -135,6 +135,7 @@ function _setValues(data) {
     document.getElementById(`injury-${i}`).false = true;
   }
   document.getElementById(`injury-value`).innerText = `${injuryValue}/3`;
+  document.getElementById(`remarks`).value = "";
 
   const memoArray = data.data.memo.split("\n");
   document.getElementById(`player-name`).value =
