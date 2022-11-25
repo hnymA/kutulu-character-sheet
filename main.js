@@ -15,6 +15,13 @@ function onClickSkill(id) {
   document.getElementById(`skill-${index}-value`).innerText = `${value}`;
   skillValue += value - beforeValue;
   document.getElementById(`skill-value`).innerText = `${skillValue}/13`;
+  if (skillValue > 13) {
+    document.getElementById(`skill-value`).classList.add("has-text-danger");
+    document.getElementById(`skill-value`).classList.remove("has-text-dark");
+  } else {
+    document.getElementById(`skill-value`).classList.remove("has-text-danger");
+    document.getElementById(`skill-value`).classList.add("has-text-dark");
+  }
 }
 
 function onClickInjury(id) {
@@ -41,6 +48,19 @@ function onClickSpeciality(id) {
   document.getElementById(
     `speciality-value`
   ).innerText = `${specialityValue}/10`;
+  if (specialityValue > 10) {
+    document
+      .getElementById(`speciality-value`)
+      .classList.add("has-text-danger");
+    document
+      .getElementById(`speciality-value`)
+      .classList.remove("has-text-dark");
+  } else {
+    document
+      .getElementById(`speciality-value`)
+      .classList.remove("has-text-danger");
+    document.getElementById(`speciality-value`).classList.add("has-text-dark");
+  }
 }
 
 function onClickOutput() {
@@ -48,6 +68,24 @@ function onClickOutput() {
   const characterName = document.getElementById(`character-name`).value;
   const title = document.getElementById(`title`).value;
   const remarks = document.getElementById(`remarks`).value;
+
+  {
+    let alertMessage = "";
+    if (playerName === "") {
+      alertMessage += "プレイヤー名を入力してください。\n";
+    }
+    if (skillValue > 13) {
+      alertMessage += "能力値が上限を超えています。\n";
+    }
+    if (specialityValue > 10) {
+      alertMessage += "専門分野が上限を超えています。\n";
+    }
+    if (alertMessage !== "") {
+      alert(alertMessage);
+      return;
+    }
+  }
+
   const outputData = {
     kind: "character",
     data: {
