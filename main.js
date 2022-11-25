@@ -4,6 +4,7 @@ let injuryValue = 0;
 
 const skillLength = 9;
 const specialityLength = 12;
+const injuryLength = 3;
 
 function onClickSkill(id) {
   const found = id.match(/skill-(.*)-(.*)/);
@@ -116,8 +117,24 @@ function _getValues() {
 
 function _setValues(data) {
   skillValue = 0;
+  for (i = 0; i < skillLength; i++) {
+    document.getElementById(`skill-${i}-value`).innerText = "0";
+    document.getElementById(`skill-${i}-0`).checked = true;
+  }
+  document.getElementById(`skill-value`).innerText = `${skillValue}/13`;
   specialityValue = 0;
+  for (i = 0; i < specialityLength; i++) {
+    document.getElementById(`speciality-${i}-value`).innerText = "0";
+    document.getElementById(`speciality-${i}-0`).checked = true;
+  }
+  document.getElementById(
+    `speciality-value`
+  ).innerText = `${specialityValue}/10`;
   injuryValue = 0;
+  for (i = 0; i < injuryLength; i++) {
+    document.getElementById(`injury-${i}`).false = true;
+  }
+  document.getElementById(`injury-value`).innerText = `${injuryValue}/3`;
 
   const memoArray = data.data.memo.split("\n");
   document.getElementById(`player-name`).value =
