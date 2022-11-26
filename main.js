@@ -217,12 +217,13 @@ function onClickDownload() {
     return;
   }
   const value = JSON.stringify(_getValues());
+  const characterName = document.getElementById(`character-name`).value;
   const blob = new Blob([value], {
     type: "text/plain",
   });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "character.json";
+  link.download = `${characterName}.json`;
   link.click();
 }
 
