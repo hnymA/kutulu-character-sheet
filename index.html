@@ -22,30 +22,15 @@
     />
   </head>
   <body class="has-background-light">
-    <section class="section">
-      <div class="container">
-        <h1 class="title" style="user-select: none">Kutulu</h1>
-        <p class="subtitle" style="user-select: none">character sheet</p>
-      </div>
-    </section>
+    <div class="container">
+      <h1 class="title" style="user-select: none">Kutulu</h1>
+      <p class="subtitle" style="user-select: none">character sheet</p>
+    </div>
     <section class="section">
       <div class="container">
         <div class="block">
           <div class="box">
             <h4 class="title is-4">個人情報</h4>
-            <div class="columns">
-              <div class="column is-one-fifth">
-                <label class="label">プレイヤー名</label>
-              </div>
-              <div class="column">
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="プレイヤー名"
-                  id="player-name"
-                />
-              </div>
-            </div>
             <div class="columns">
               <div class="column is-one-fifth">
                 <label class="label">キャラクター名</label>
@@ -72,18 +57,33 @@
                 />
               </div>
             </div>
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <label class="label">プレイヤー名</label>
+              </div>
+              <div class="column">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="プレイヤー名"
+                  id="player-name"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div class="block">
-          <div class="columns">
-            <div class="column">
-              <div class="box">
-                <div class="columns">
-                  <div class="column"><h4 class="title is-4">能力値</h4></div>
-                  <div class="column">
-                    <h5 class="title is-5" id="skill-value"></h5>
-                  </div>
-                </div>
+          <div class="box">
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <h4 class="title is-4">能力値</h4>
+              </div>
+              <div class="column">
+                <h5 class="title is-5" id="skill-value"></h5>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
                 <h6 class="subtitle is-6">アクティブ能力値</h6>
                 <div class="columns">
                   <div class="column is-one-third">
@@ -280,6 +280,8 @@
                   </div>
                   <div class="column" id="skill-4-value"></div>
                 </div>
+              </div>
+              <div class="column">
                 <h6 class="subtitle is-6">パッシブ能力値</h6>
                 <div class="columns">
                   <div class="column is-one-third">
@@ -438,41 +440,21 @@
                   <div class="column" id="skill-8-value"></div>
                 </div>
               </div>
-              <div class="box">
-                <h4 class="title is-4">負傷</h4>
-                <div class="columns">
-                  <div class="column">
-                    <input
-                      type="checkbox"
-                      id="injury-0"
-                      name="injury"
-                      onClick="onClickInjury(this.id)"
-                    />
-                    <input
-                      type="checkbox"
-                      id="injury-1"
-                      name="injury"
-                      onClick="onClickInjury(this.id)"
-                    />
-                    <input
-                      type="checkbox"
-                      id="injury-2"
-                      name="injury"
-                      onClick="onClickInjury(this.id)"
-                    />
-                  </div>
-                  <div class="column" id="injury-value"></div>
-                </div>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="box">
+            <div class="columns">
+              <div class="column is-one-fifth">
+                <h4 class="title is-4">専門分野</h4>
+              </div>
+              <div class="column">
+                <h5 class="title is-5" id="speciality-value"></h5>
               </div>
             </div>
-            <div class="column">
-              <div class="box">
-                <div class="columns">
-                  <div class="column"><h4 class="title is-4">専門分野</h4></div>
-                  <div class="column">
-                    <h5 class="title is-5" id="speciality-value"></h5>
-                  </div>
-                </div>
+            <div class="columns">
+              <div class="column">
                 <div class="columns">
                   <div class="column is-one-third">
                     <label class="label" id="speciality-0-label"
@@ -681,6 +663,8 @@
                   </div>
                   <div class="column" id="speciality-5-value"></div>
                 </div>
+              </div>
+              <div class="column">
                 <div class="columns">
                   <div class="column is-one-third">
                     <label class="label" id="speciality-6-label">医学</label>
@@ -889,15 +873,55 @@
             </div>
           </div>
         </div>
-        <div class="block">
-          <div class="box">
-            <h4 class="title is-4">備考</h4>
-            <textarea
-              class="textarea"
-              placeholder="備考"
-              rows="3"
-              id="remarks"
-            ></textarea>
+        <div class="columns">
+          <div class="column">
+            <div class="block">
+              <div class="box">
+                <div class="columns">
+                  <div class="column is-one-fifth">
+                    <h4 class="title is-4">負傷</h4>
+                  </div>
+                  <div class="column">
+                    <h5 class="title is-5" id="injury-value"></h5>
+                  </div>
+                </div>
+                <div class="columns">
+                  <div class="column">
+                    <input
+                      type="checkbox"
+                      id="injury-0"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                    <input
+                      type="checkbox"
+                      id="injury-1"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                    <input
+                      type="checkbox"
+                      id="injury-2"
+                      name="injury"
+                      onClick="onClickInjury(this.id)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="block">
+              <div class="box">
+                <h4 class="title is-4">備考</h4>
+                <textarea
+                  class="textarea"
+                  placeholder="備考"
+                  rows="3"
+                  id="remarks"
+                ></textarea>
+              </div>
+            </div>
           </div>
         </div>
       </div>
