@@ -67,12 +67,18 @@ function _getValues() {
   const playerName = document.getElementById(`player-name`).value;
   const characterName = document.getElementById(`character-name`).value;
   const title = document.getElementById(`title`).value;
-  const remarks = document.getElementById(`remarks`).value;
+  const remarks =
+    document.getElementById(`remarks`).value === undefined
+      ? ""
+      : document.getElementById(`remarks`).value;
 
   const data = {
     kind: "character",
     data: {
-      name: `${playerName}`,
+      name: `${characterName}`,
+      owner: `${playerName}`,
+      title: `${title}`,
+      remarks: `${remarks}`,
       memo: "",
       initiative: 0,
       params: [],
@@ -135,17 +141,11 @@ function _setValues(data) {
     document.getElementById(`injury-${i}`).false = true;
   }
   document.getElementById(`injury-value`).innerText = `${injuryValue}/3`;
-  document.getElementById(`remarks`).value = "";
 
-  const memoArray = data.data.memo.split("\n");
-  document.getElementById(`player-name`).value =
-    memoArray[0].match(/プレイヤー名：(.*)/)[1];
-  document.getElementById(`character-name`).value =
-    memoArray[1].match(/キャラクター名：(.*)/)[1];
-  document.getElementById(`title`).value =
-    memoArray[2].match(/称号 \/ 肩書：(.*)/)[1];
-  document.getElementById(`remarks`).value =
-    memoArray[3] === undefined ? "" : memoArray[3];
+  document.getElementById(`player-name`).value = data.data.owner;
+  document.getElementById(`character-name`).value = data.data.name;
+  document.getElementById(`title`).value = data.data.title;
+  document.getElementById(`remarks`).value = data.data.remarks;
 
   for (i = 0; i < skillLength; i++) {
     const name = document.getElementById(`skill-${i}-label`).textContent;
